@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+
+<form method="POST" th:action="@{/orders}" th:object="${order}">
+    <h1>Order your taco creations!</h1>
+
+    <img src="../static/images/TacoCloud.png" alt="TacoCloud.png" th:src="@{/images/TacoCloud.png}">
+    <a th:href="@{/design}" id="another">Design another taco</a><br/>
+
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Please correct the problems below and resubmit.
+        </span>
+    </div>
+
+    <h3>Deliver my taco masterpieces to...</h3>
+
+    <div class="conteiner_input_text">
+        <div class="text_taco">
+            <label for="name">Name: </label>
+            <label for="street">Street address: </label>
+            <label for="city">City: </label>
+            <label for="state">State: </label>
+            <label for="zip">Zip code: </label>
+        </div>
+
+        <div class="input_taco">
+            <input type="text" th:field="*{name}"/>
+            <input type="text" th:field="*{street}"/>
+            <input type="text" th:field="*{city}"/>
+            <input type="text" th:field="*{state}"/>
+            <input type="text" th:field="*{zip}"/>
+        </div>
+
+        <!-- end::allButValidation[] -->
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
+        <!-- tag::allButValidation[] -->
+        <br/>
+    </div>
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">Street Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">City Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}">State Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('zip')}"
+          th:errors="*{zip}">Zip Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+    <h3>Here's how I'll pay...</h3>
+    <div class="conteiner_input_text">
+        <div class="text_taco">
+            <label for="ccNumber">Credit Card #: </label>
+            <label for="ccExpiration">Expiration: </label>
+            <label for="ccCVV">CVV: </label>
+        </div>
+        <div class="input_taco">
+            <input type="text" th:field="*{ccNumber}"/>
+            <input type="text" th:field="*{ccExpiration}"/>
+            <input type="text" th:field="*{ccCVV}"/>
+
+
+
+        </div>
+    </div>
+    <!-- tag::validatedField[] -->
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccNumber')}"
+          th:errors="*{ccNumber}">CC Num Error</span>
+    <!-- tag::allButValidation[] -->
+    <!-- end::validatedField[] -->
+    <br/>
+
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccExpiration')}"
+          th:errors="*{ccExpiration}">CC Num Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccCVV')}"
+          th:errors="*{ccCVV}">CC Num Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+    <input type="submit" value="Submit order"/>
+</form>
+
+</body>
+</html>
