@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -75,11 +74,14 @@ public class DesignTacoController {
     @PostMapping
     public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
+
+
             return "design";
         }
 
         Taco saved = designRepo.save(design);
         order.addDesign(saved);
+        System.out.println(2);
 
         return "redirect:/orders/current";
     }
